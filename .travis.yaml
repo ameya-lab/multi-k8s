@@ -14,14 +14,14 @@ before_install:
   - gcloud auth activate-service-account --key-file service-account.json
 ## The skilful-berm-214822 is a project id from Google Cloud (Stephen Grider)##
 ## Please mention your project id##
-  - gcloud config set project skilful-berm-214822
-  - gcloud config set compute/zone us-central1-a
+  - gcloud config set project multi-k8s-274813
+  - gcloud config set compute/zone us-central1-c
   - gcloud container clusters get-credentials multi-cluster
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
-  - docker build -t stephengrider/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t ameyad22/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run stephengrider/react-test npm test -- --coverage
+  - docker run ameyad22/react-test npm test -- --coverage
 
 deploy:
   provider: script
